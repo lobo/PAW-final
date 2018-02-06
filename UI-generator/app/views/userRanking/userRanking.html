@@ -1,0 +1,36 @@
+
+
+<link rel="stylesheet" href="./styles/clan.css">
+<link rel="stylesheet" href="./styles/globalRanking.css">
+<div class="ranking-container">
+  <div class="ranking-table">
+    <div class="title">{{index_userRanking}}</div>
+    <div class="header">
+      <div>{{game_rank}}</div>
+      <div>{{userRanking_user}}</div>
+      <div>{{game_score}}</div>
+    </div>
+    <div ng-repeat="user in users" class="table-row">
+        <p>{{$index+1 + (page-1)*itemsPerPage}}</p>
+        <div class="nameAndImage">
+          <img class="itemImg" ng-src={{user.profile_image_url}} />
+          <a class="username-link" ng-href="./#!/user/{{user.id}}">{{user.username}}</a>
+        </div>
+        <p>
+          {{formatNumber(user.score,2)}}
+        </p>
+    </div>
+    <div id="pagination">
+      <div ng-if="page != 1">
+        <div class="changePageBtn">
+          <a id="prevPage" ng-href="./#!/userRanking?page={{page-1}}">⬅️ {{userRanking_prev}}</a>
+        </div>
+      </div>
+      <div ng-if="totalPages > page">
+        <div class="changePageBtn">
+          <a id="nextPage" ng-href="./#!/userRanking?page={{page+1}}">{{userRanking_next}} ➡️</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

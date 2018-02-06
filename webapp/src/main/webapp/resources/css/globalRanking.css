@@ -1,0 +1,44 @@
+
+#pagination {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    margin-top: 2rem;
+}
+
+#nextPage, #prevPage {
+    color: white;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.ranking-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.nameAndImage {
+    display: flex;
+    flex-direction: row;
+}
+
+.itemImg {
+    align-self: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-right: 0.75rem;
+    border-style: solid;
+    border-color: #5c4a3a;
+    border-width: 2px;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+#nextPage:hover, #prevPage:hover {
+    cursor: pointer;
+    color: black;
+}

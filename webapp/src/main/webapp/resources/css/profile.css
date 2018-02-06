@@ -1,0 +1,170 @@
+
+body {
+    font-family: Fixedsys;
+    /*min-width: 1200px;*/
+    /*overflow-y: hidden;*/
+    position: relative;
+    background-color: #DEDEDE;
+}
+
+img.profile-img {
+    max-width: 20em;
+    /*margin-top: 2rem;*/
+}
+
+.canvas {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 0;
+    /*overflow-y: auto;*/
+    height: 100vh;
+    color: white;
+    background-color: #3f51b5;
+    margin: 0;
+    padding-bottom: 5rem;
+    /*overflow-y: auto;*/
+}
+
+p.subtitle {
+    font-size: 1.25rem;
+}
+
+#clanLink {
+    font-size: 1.25rem;
+    margin-left: 0.75rem;
+}
+
+#clanLink:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 3;
+    /*overflow-y: auto;*/
+    height: 100vh;
+    align-items: stretch;
+    width: 0;
+    /*overflow-y: scroll;*/
+}
+
+.main-user-properties {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 0;
+}
+
+.unlocked-factories-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-basis: 120%;
+}
+
+.unlocked-factory-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.unlocked-factory-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 10rem;
+    height: auto;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+#username{
+    font-size: 2rem;
+    margin: 0;
+}
+
+#score{
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+#world-ranking {
+    font-size: 1.5rem;
+    align-self: center;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+.resources-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.resources{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-self: stretch;
+    height: 20rem;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+
+.resource {
+    display: flex;
+    margin-left: 5%;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+    min-width: 8rem;
+}
+
+.factory-card-title {
+    height: 2em;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+img.factory-image {
+    max-height: 10rem;
+    width: auto;
+}
+
+#group-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 1.25rem;
+}
+
+img.group-logo {
+    max-width: 3rem;
+    max-height: 3rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+img.resource-icon {
+    max-width: 2.5rem;
+    max-height: 2.5rem;
+}
+
+.flex-left-text {
+    text-align: left;
+    margin-left: 10%;
+}

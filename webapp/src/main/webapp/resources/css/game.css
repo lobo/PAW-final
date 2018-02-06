@@ -1,0 +1,355 @@
+
+.modal {
+	overflow: visible !important;
+	min-height: 20em;
+}
+
+.center-card-title {
+	font-weight: 800;
+	min-height: 3em;
+}
+
+ul {
+	max-height: 20rem !important;
+}
+
+form label,
+form input,
+form button {
+	border: 0;
+	margin-bottom: 3px;
+	display: block;
+	width: 100%;
+}
+form input {
+	height: 25px;
+	line-height: 25px;
+	background: #fff;
+	padding: 0 6px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+form button {
+	height: 30px;
+	line-height: 30px;
+	background: #e67e22;
+	color: #fff;
+	margin-top: 10px;
+	cursor: pointer;
+}
+form .error {
+	color: #ff0000 !important;
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+	font-size: 0.9em;
+}
+
+.upgradeButton.btn.waves-light {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+}
+
+img.resource-icon {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+#marketModal {
+	background-color: #3f51b5;
+	color: white;
+}
+
+.marketButton {
+	left: 25%;
+}
+.logoutButton{
+	left: 25%;
+}
+
+body {
+	font-family: Fixedsys;
+	overflow-y: hidden!important;
+	height: 100vh;
+	min-width: 1200px;
+	background-color: #DEDEDE;
+	position: relative;
+}
+
+.scrollable-y.card {
+	background-color: #3f51b5;
+}
+
+div.factory-card-container {
+	position: relative;
+}
+
+.preloader-wrapper{
+	position: absolute!important;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	height: 10em !important;
+	width: 10em !important;
+	z-index: 5;
+}
+
+.preloader-wrapper.hidden {
+	display: none !important;
+}
+
+#loading-disabler {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: #000000;
+	opacity: 0.4;
+	z-index: 2;
+}
+
+#loading-disabler.hidden {
+	display: none !important;
+}
+
+.dropdown-wrapper.error {
+	color: red;
+}
+
+.factory-consuming, .factory-producing{
+    min-height: 6.4rem;
+}
+
+div.col.button-container {
+	position: relative;
+	padding: 0;
+}
+
+.card.factory-central-card {
+    min-height: 24em;
+}
+
+div.upgrade-button-container{
+	padding: 0.8rem;
+}
+
+div.box.black.upgradeDisability {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	color: black;
+	opacity: 0.25;
+	z-index: 2;
+}
+
+div.box.black.buy1Disability {
+	position: absolute;
+	width: 33%;
+	height: 100%;
+	color: black;
+	opacity: 0.4;
+	z-index: 2;
+}
+
+div.box.black.buy10Disability {
+	position: absolute;
+	width: 33%;
+	height: 100%;
+	color: black;
+	opacity: 0.4;
+	z-index: 2;
+	left: 33%;
+}
+
+div.box.black.buy100Disability {
+	position: absolute;
+	width: 33%;
+	height: 100%;
+	color: black;
+	opacity: 0.4;
+	z-index: 2;
+	left: 66%;
+}
+
+#maxButtonContainer {
+	position: relative;
+}
+
+.maxText {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 1.3em;
+	font-weight: 800;
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+	pointer-events: none;
+}
+
+div.box.black.buyMaxDisability {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	color: black;
+	opacity: 0.4;
+	z-index: 2;
+	left: 0%;
+}
+
+div.box.black.canBuy {
+	display: none;
+}
+
+div.scrollable-y {
+	overflow-y: auto;
+	height: 100vh;
+	margin: 0;
+}
+
+div.buyFactorySection.col {
+	padding-top: 0.5em;
+}
+
+.main-frame.row {
+	margin: 0;
+}
+
+#score {
+    font-size: 1.5rem;
+}
+
+p {
+	font-size: 1rem;
+}
+
+p.centered-text {
+	text-align: center;
+}
+
+a.username {
+	font-size: 1.7rem;
+	color: white;
+}
+
+a.username:hover {
+	color: black;
+}
+
+div.section {
+	padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.divider {
+	margin: 0.6rem;
+}
+
+div.no-padding {
+	padding: 0;
+}
+
+.row.factory-card {
+	margin: 0;
+}
+
+.card-image.profile-picture {
+	max-width: 12rem;
+}
+
+.factory-main {
+	max-width: 17rem;
+}
+
+.right-description {
+	display: flex;
+	justify-content: space-around;
+}
+
+button.OUTPUT_INCREASE{
+	background-color: orange;
+    color: black;
+    min-width: 5.5rem;
+}
+
+button.INPUT_REDUCTION{
+	background-color: gold;
+    color: black;
+	min-width: 5.5rem;
+}
+
+button.COST_REDUCTION{
+	background-color: limegreen;
+    color: black;
+    min-width: 5.5rem;
+}
+
+img.upgradeImage {
+	padding: 0.1rem;
+}
+
+#createClanSend {
+    width: 6rem;
+    height: auto;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.buyButtonsContainer {
+	display: flex;
+	flex-direction: row;
+	align-content: space-around;
+	position: relative;
+}
+
+.buyFactory {
+	width: 100%;
+	height: auto;
+}
+
+.buyFactory:hover {
+	cursor: pointer;
+}
+
+#createClanSend:hover {
+    cursor: pointer;
+}
+
+input.inputerror {
+    border-bottom: 1px solid red !important;
+}
+
+input.inputClan.inputerror {
+    border-bottom: 4px solid red !important;
+}
+
+img.marketButton {
+	width: 6rem;
+}
+
+img.marketButton:hover {
+	cursor: pointer;
+ }
+
+.market-block {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.calculatedPrice {
+    margin: 0;
+}
+
+.divider.last {
+    height: 4rem;
+    display: inline-block;
+}
+
+.material-tooltip {
+	white-space: pre;
+	text-align: left !important;
+}

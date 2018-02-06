@@ -1,0 +1,190 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>clickerQuest</title>
+  <meta name="description" content="">
+
+  <!-- build:css(.tmp) styles/clan.css -->
+  <link rel="stylesheet" href="./styles/clan.css">
+  <!-- endbuild -->
+
+  <!-- build:css(.tmp) styles/common.css -->
+  <link rel="stylesheet" href="./styles/common.css">
+  <!-- endbuild -->
+
+  <!-- build:css(.tmp) ./styles/game.css -->
+  <link rel="stylesheet" href="./styles/game.css">
+  <!-- endbuild -->
+
+  <!-- build:css(.tmp) ./styles/globalRanking.css -->
+  <link rel="stylesheet" href="./styles/globalRanking.css">
+  <!-- endbuild -->
+
+  <!-- build:css(.tmp) ./styles/home.css -->
+  <link rel="stylesheet" href="./styles/home.css">
+  <!-- endbuild -->
+
+  <!-- build:css(.tmp) ./styles/main.css -->
+  <link rel="stylesheet" href="./styles/common.css">
+  <!-- endbuild -->
+
+  <!-- build:css(.tmp) ./styles/ng-modal.css -->
+  <link rel="stylesheet" href="./styles/ng-modal.css">
+  <!-- endbuild -->
+
+  <!-- build:css(.tmp) ./styles/profile.css -->
+  <link rel="stylesheet" href="./styles/profile.css">
+  <!-- endbuild -->
+
+  <!-- build:css(.tmp) ./styles/register.css -->
+  <link rel="stylesheet" href="./styles/register.css">
+  <!-- endbuild -->
+
+  <!-- build:css(.tmp) ./styles/errorPage.css -->
+  <link rel="stylesheet" href="./styles/errorPage.css">
+  <!-- endbuild -->
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body ng-controller="IndexCtrl as vm" ng-class="location.path() == '/' || location.path() == '/game' ? 'noScroll':''">
+  <!--[if lt IE 7]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+
+  <!-- Create Clan Modal -->
+  <modal-dialog id="clanModal" ng-attr-show='showCreateClan'>
+    <div class="modal-content">
+      {{index_selectName}}<br>
+      <input id="clanNameInput" class="inputClan" ng-model="newClanName" type="text" name="clanName">
+      <div id="clanNameExistsMsg" class="inputError">{{createClanError}}</div>
+      <img id="createClanSend" ng-click="createClan(newClanName)" ng-src="{{createButton}}"/>
+    </div>
+  </modal-dialog>
+
+  <div id="snackbar">{{snackbarMsg}}</div>
+
+  <!-- NavBar -->
+  <div class="row main-frame no-margins" ng-if="location.path() != '/' && location.path() != '/register'">
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <div>
+            <a id="logo-container" ng-href="#!/game" class="brand-logo">
+              <img class="upper-logo" src="./images/clickerQuest_logo.png" alt="logo"/>
+            </a>
+          </div>
+          <div id="search-user">
+            <form onSubmit="return false;" autocomplete="on">
+              <div class="">
+                <input id="searchbar"
+                       type="text"
+                       ng-model="searchField"
+                       placeholder="{{index_searchBar}}"
+                       auto-complete="autoCompleteOptions" />
+              </div>
+            </form>
+          </div>
+
+          <div id="clanRanking" class="button last">
+            <ul>
+              <li>
+                <a ng-href="#!/clanRanking">{{index_clanRanking}}</a>
+              </li>
+            </ul>
+          </div>
+          <div id="globalRanking" class="button">
+            <ul>
+              <li>
+                <a ng-href="#!/userRanking">{{index_userRanking}}</a>
+              </li>
+            </ul>
+          </div>
+
+          <!--leave clan-->
+          <div ng-if="user.clan_id && location.path() == '/clan'">
+              <div class="button">
+                <ul>
+                  <li>
+                    <a ng-click="leaveClan()">{{index_leaveClan}}</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+
+          <!--join clan-->
+          <div ng-if="!user.clan_id && isAnotherClan()">
+            <div class="button">
+              <ul>
+                <li>
+                  <a ng-click="joinClan(clanID)">{{index_joinClan}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+          <!--create clan-->
+          <div ng-if="!user.clan_id">
+            <div class="button">
+              <ul>
+                <li>
+                  <a id="createClanBtn">{{index_createClan}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+          <!--my clan-->
+          <div ng-if="user.clan_id && location.path() != '/clan'">
+            <div id="createClan" class="button">
+              <ul>
+                <li>
+                  <a ng-href="#!/clan">{{index_myClan}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div id="logout">
+            <ul id="nav-mobile">
+              <li><a ng-click="logout()">{{index_logout}}</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+
+    <div ng-view=""></div>
+
+
+
+  <!-- SCRIPTS -->
+
+
+  <!-- JavaScript for: jQuery, angular, materialize, and angular-materialize. All of which are needed. -->
+
+  <!-- build:js(.) scripts/oldieshim.js -->
+  <!--[if lt IE 9]>
+  <script src="./bower_components/es5-shim/es5-shim.js"></script>
+  <script src="./bower_components/json3/lib/json3.js"></script>
+  <![endif]-->
+  <!-- endbuild -->
+  <script src="./scripts/paths.js"></script>
+  <script src="./bower_components/requirejs/require.js" data-main="./scripts/build.js"></script>
+
+  <script src="./scripts/commonUtils.js"></script>
+
+
+  <!-- endbuild -->
+</body>
+</html>

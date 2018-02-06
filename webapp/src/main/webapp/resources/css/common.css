@@ -1,0 +1,88 @@
+
+@font-face {
+    font-family: Fixedsys;
+    src: url('../fonts/FSEX300.ttf') format("truetype");;
+}
+.nav-wrapper {
+    display: flex;
+    background-color: #354488;
+}
+
+nav .brand-logo {
+    margin-left: 20px;
+}
+nav form {
+    margin-left: 180px;
+    width: 300px;
+}
+
+.upper-logo {
+    max-height: 1em;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+#search-user {
+    width: 5rem;
+}
+
+nav .button {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+nav .button.last {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+#search-user {
+    margin-right: 0;
+}
+
+.input-field.search-user {
+    background-color: #417ec8;
+}
+
+
+.no-margins {
+    margin: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+#toast-container {
+    position: absolute !important;
+    top: 90% !important;
+    left: 40% !important;
+    transform: translate(-50%, -50%) !important;
+    /*top: auto !important;*/
+    /*bottom: 5%;*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    /*width: 30rem; !* Need a specific value to work *!*/
+}
+
+#clanModal {
+    top: 64px !important; /* height of navbar */
+    min-height: 12rem;
+    margin-right: 0;
+    margin-left: auto;
+    width: 20rem;
+    background-color: #3f51b5;
+    color: white;
+}
+
+#clanNameInput {
+    background-color: white;
+    color: black;
+    width: 16rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}

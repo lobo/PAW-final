@@ -1,0 +1,88 @@
+
+body {
+  background-color: #4eace2;
+}
+
+#formContent {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#registerBtnContainer {
+  display: flex;
+  align-self: center;
+}
+
+form.registercss {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  width: 30%;
+  align-self: center;
+}
+
+input.whiteInput.registercss {
+  margin-bottom: 0 !important;
+  margin-top: 1rem !important;
+}
+
+.inputBox.registercss {
+    margin: auto;
+    width: 80%;
+    height: 2em;
+    margin: 0.2em;
+    margin-top: 1em;
+    margin-bottom:  1em;
+    font-size: 1.4em;
+    max-width: 25em;
+}
+
+h2.registercss {
+    font-family: Fixedsys;
+    color: white;
+    font-size: 5em;
+    text-shadow: -1px 0 black, 0 1px black, 8px 0 black, 0 -6px black;
+    margin-top: 1em;
+}
+.formError.registercss {
+    width: 80%;
+    margin:auto;
+    font-weight: 600;
+    color: #ff2222;
+    margin-top: -1em;
+    max-width: 30em;
+
+}
+
+#backBtn {
+    font-family: Fixedsys;
+    color: white;
+    font-size: 1.5em;
+    text-shadow: -1px 0 black, 0 1px black, 4px 0 black, 0 -3px black;
+    margin-left: 2.5rem;
+    width: 8rem;
+}
+
+#backBtn:hover {
+    color: black;
+    text-shadow: -1px 0 white, 0 1px white, 4px 0 white, 0 -3px white;
+    cursor: pointer;
+}
+
+#registerForm {
+    /*background-color: darkblue;*/
+    margin: auto;
+    width: 70%;
+    padding-bottom:  1em;
+    max-width: 50em;
+}
+
+#register.registercss {
+  width: 9rem;
+  margin-top: 1rem;
+}
+
+#register.registercss:hover {
+    cursor: pointer;
+}

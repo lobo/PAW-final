@@ -1,0 +1,106 @@
+<div style="visibility: hidden; position: absolute;">{{
+  factImg[0] = "./images/factory_images/0.jpg";
+  factImg[1] = "./images/factory_images/1.jpg";
+  factImg[2] = "./images/factory_images/2.jpg";
+  factImg[3] = "./images/factory_images/3.jpg";
+  factImg[4] = "./images/factory_images/4.jpg";
+  factImg[5] = "./images/factory_images/5.jpg";
+  factImg[6] = "./images/factory_images/6.jpg";
+  factImg[7] = "./images/factory_images/7.jpg";
+  factImg[8] = "./images/factory_images/8.jpg";
+  resImg[0] = "./images/resources_icon/0.png";
+  resImg[1] = "./images/resources_icon/1.png";
+  resImg[2] = "./images/resources_icon/2.png";
+  resImg[3] = "./images/resources_icon/3.png";
+  resImg[4] = "./images/resources_icon/4.png";
+  resImg[5] = "./images/resources_icon/5.png";
+  resImg[6] = "./images/resources_icon/6.png";
+  resImg[7] = "./images/resources_icon/7.png";
+  resImg[8] = "./images/resources_icon/8.png";
+  resImg[9] = "./images/resources_icon/9.png";
+  resImg[10] = "./images/resources_icon/10.png";
+  resImg[11] = "./images/resources_icon/11.png";
+  resImg[12] = "./images/resources_icon/12.png";
+  }}</div>
+<link rel="stylesheet" href="./styles/profile.css">
+<div class="row no-margins canvas">
+  <div class="profilecss left-section">
+    <div class="main-user-properties">
+      <div>
+        <p id="username">{{user.username}}</p>
+      </div>
+      <div>
+        <img class="profile-img" ng-src="{{user.profile_image_url}}" />
+      </div>
+      <div>
+        <p id="score">
+          {{profile_score}}: {{formatNumber(user.score)}}
+          <!--<script>document.write(abbreviateNumber(parseFloat(${user.score}), false));</script>-->
+        </p>
+      </div>
+    </div>
+    <div id="world-ranking">
+      <div>
+        {{profile_rank}}: #{{user.ranking}}
+      </div>
+    </div>
+    <div ng-if="user.clan != null" id="group-info">
+      <div>
+        {{profile_clan}}:
+      </div>
+      <br>
+      <a ng-href='./#!/clan/{{user.clan.id}}' id="clanLink" data-clanName="{{user.clan.name}}">
+        {{user.clan.name}}
+      </a>
+    </div>
+  </div>
+
+  <div class="right-section">
+    <div class="unlocked-factories-section">
+      <p class="title no-margins">
+        {{profile_unlockedFactories}}
+      </p>
+      <div class="unlocked-factory-cards">
+        <div ng-repeat="factory in factories">
+          <div ng-if="factory.amount != 0">
+            <div class="unlocked-factory-card">
+              <div>
+                <p class="factory-card-title">
+                  {{factoriesName[factory.id]}}
+                </p>
+              </div>
+              <div>
+                <img class="factory-image" ng-src="{{factImg[factory.id]}}" />
+              </div>
+              <div>
+                <p class="cant-factory no-margins">
+                  x {{ formatNumber(factory.amount,2)}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="resources-section">
+      <p class="title no-margins">
+        {{profile_resources}}
+      </p>
+      <div class="resources">
+        <div ng-repeat="res in resources">
+          <div class="resource">
+            <div data-toggle="tooltip" title="{{resourcesName[res.id]}}">
+              <img class="resource-icon tooltipped" data-position="top" data-delay="50"
+                   data-tooltip='{{res.name}}' ng-src="{{resImg[res.id]}}" />
+            </div>
+            <div class="flex-left-text">
+              <p>
+                {{formatNumber(res.storage,2)}} + {{formatNumber(res.production,2)}}/s
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

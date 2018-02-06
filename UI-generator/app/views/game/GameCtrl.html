@@ -1,0 +1,408 @@
+<link rel="stylesheet" href="./styles/game.css">
+<div style="visibility: hidden; position: absolute;">
+  {{
+
+  factImg[0] = "./images/factory_images/0.jpg";
+  factImg[1] = "./images/factory_images/1.jpg";
+  factImg[2] = "./images/factory_images/2.jpg";
+  factImg[3] = "./images/factory_images/3.jpg";
+  factImg[4] = "./images/factory_images/4.jpg";
+  factImg[5] = "./images/factory_images/5.jpg";
+  factImg[6] = "./images/factory_images/6.jpg";
+  factImg[7] = "./images/factory_images/7.jpg";
+  factImg[8] = "./images/factory_images/8.jpg";
+
+  upgradeImg[0] = "./images/upgrade_icons/0.png";
+  upgradeImg[1] = "./images/upgrade_icons/1.png";
+  upgradeImg[2] = "./images/upgrade_icons/2.png";
+
+  resImg[0] = "./images/resources_icon/0.png";
+  resImg[1] = "./images/resources_icon/1.png";
+  resImg[2] = "./images/resources_icon/2.png";
+  resImg[3] = "./images/resources_icon/3.png";
+  resImg[4] = "./images/resources_icon/4.png";
+  resImg[5] = "./images/resources_icon/5.png";
+  resImg[6] = "./images/resources_icon/6.png";
+  resImg[7] = "./images/resources_icon/7.png";
+  resImg[8] = "./images/resources_icon/8.png";
+  resImg[9] = "./images/resources_icon/9.png";
+  resImg[10] = "./images/resources_icon/10.png";
+  resImg[11] = "./images/resources_icon/11.png";
+  resImg[12] = "./images/resources_icon/12.png";
+
+  buttonImg["buttons_es" + "100"] = "./images/buttons_es/buy100.png";
+  buttonImg["buttons_es" + "10"] = "./images/buttons_es/buy10.png";
+  buttonImg["buttons_es" + "1"] = "./images/buttons_es/buy1.png";
+  buttonImg["buttons_es" + "buy"] = "./images/buttons_es/buy.png";
+  buttonImg["buttons_es" + "sell"] = "./images/buttons_es/sell.png";
+  buttonImg["buttons" + "100"] = "./images/buttons/buy100.png";
+  buttonImg["buttons" + "10"] = "./images/buttons/buy10.png";
+  buttonImg["buttons" + "1"] = "./images/buttons/buy1.png";
+  buttonImg["buttons" + "buy"] = "./images/buttons/buy.png";
+  buttonImg["buttons" + "sell"] = "./images/buttons/sell.png";
+
+  }}
+</div>
+<!--Market Modal-->
+<modal-dialog show='showMarket' dialog-title={{game_market}}>
+  <div class="modal-content">
+    <div input-field>
+    </div>
+    <p>{{game_marketWelcome}}</p>
+    <form action="" name="market.buy">
+      <div class="row market-block">
+        <div id="market-buy-resource-wrapper" class="col s3 dropdown-wrapper">
+          <select id="marketBuyResource" class="marketForm" ng-model="market.buy.resourceID">
+            <option value="">-- {{game_selectResource}} --</option> <!-- not selected / blank option -->
+            <option ng-repeat="res in marketPrices" value="{{res.id}}">{{res.name}}</option>
+          </select>
+        </div>
+        <div class="col s2">
+          <input maxlength="5" type="text" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 0'
+                 class="gamecss marketForm" name="buyAmount" ng-model="market.buy.amount" id="marketBuyAmount" placeholder="CANT">
+        </div>
+        <div id="market-buy-unit-wrapper" class="col s3 dropdown-wrapper">
+          <select id="marketBuyUnit" class="marketForm" ng-model="market.buy.unit">
+            <option value="">-- {{game_selectUnit}} --</option> <!-- not selected / blank option -->
+            <option ng-repeat="unit in marketUnits" value="{{unit}}">{{unit}}</option>
+          </select>
+        </div>
+        <div class="col s2">
+          <p id="market.buy.price" class="calculatedPrice">
+            $ {{formatNumber(marketPrices[market.buy.resourceID].price * market.buy.amount * unitToFactor(market.buy.unit)) == "NaN"?
+                        "-" : formatNumber(marketPrices[market.buy.resourceID].price * market.buy.amount * unitToFactor(market.buy.unit))}}
+          </p>
+        </div>
+        <div ng-click="buyResource()" class="col s2">
+          <img id="market.buy" class="marketButton" ng-src="{{buttonImg[buttonsFolder + 'buy']}}" />
+        </div>
+      </div>
+    </form>
+
+    <form action="" name="market.sell">
+      <div class="row market-block">
+        <div id="market-sell-resources-wrapper" class="col s3 dropdown-wrapper">
+          <select id="marketSellResource" class="marketForm" ng-model="market.sell.resourceID">
+            <option value="">-- {{game_selectResource}} --</option> <!-- not selected / blank option -->
+            <option ng-repeat="value in marketPrices" value="{{value.id}}">{{value.name}}</option>
+          </select>
+        </div>
+        <div class="col s2">
+          <input maxlength="5" type="text" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 0'
+                 class="gamecss marketForm" ng-model="market.sell.amount" id="marketSellAmount" placeholder="CANT">
+        </div>
+
+        <div id="market-sell-unit-wrapper" class="col s3 dropdown-wrapper">
+          <select id="marketSellUnit" class="marketForm" ng-model="market.sell.unit">
+            <option value="">-- {{game_selectUnit}} --</option> <!-- not selected / blank option -->
+            <option ng-repeat="unit in marketUnits" value="{{unit}}">{{unit}}</option>
+          </select>
+        </div>
+        <div class="col s2">
+          <p id="market.sell.price" class="calculatedPrice">
+            $ {{formatNumber(marketPrices[market.sell.resourceID].price * market.sell.amount * unitToFactor(market.sell.unit)) == "NaN"?
+            "-" : formatNumber(marketPrices[market.sell.resourceID].price * market.sell.amount * unitToFactor(market.sell.unit))}}
+          </p>
+        </div>
+        <div ng-click="sellResource()" class="col s2">
+          <img id="market.sell" class="marketButton" ng-src="{{buttonImg[buttonsFolder + 'sell']}}" />
+        </div>
+      </div>
+    </form>
+  </div>
+</modal-dialog>
+
+<div class="row" id="outer">
+  <!-- LEFT PANEL -->
+  <div class="col no-padding s2">
+    <div class="scrollable-y card darken-1">
+
+      <!-- Player's info -->
+      <div class="card-content white-text">
+        <div class="section">
+          <a ng-href="#!/profile" class="username">
+            {{user.username}}
+          </a>
+          <div class="card-image profile-picture">
+            <img class="profile" ng-src="{{user.image}}" />
+          </div>
+          <p id="score">{{game_score}}: {{formatNumber(user.score,2)}}
+          </p>
+          <p id="ranking">{{game_rank}}: {{user.ranking}}
+          </p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <a class="waves-effect waves-light btn marketButton" ng-click="showMarket = true; updateMarketPrices();">{{game_market}}</a>
+
+      <!-- Resources -->
+      <div class="card-content white-text">
+        <span class="card-title">{{game_resources}}</span>
+        <div id="storage">
+          <!--TODO sort this-->
+          <div ng-repeat="(id, res) in resources ">
+            <div class="row no-margins">
+              <div class="col" data-toggle="tooltip" title='{{resourcesName[res.id]}}'>
+                <img class="resource-icon tooltipped" data-position="top" data-delay="50"
+                     data-tooltip='{{res.name}}' ng-src="{{resImg[res.id]}}" />
+              </div>
+              <div class="col">
+                <p class="resourcesValue">
+                  {{formatNumber(res.storage,2,true)}} + {{formatNumber(res.production,2)}}/s
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="divider last"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CENTER PANEL -->
+  <div class="scrollable-y col no-padding s7">
+
+    <div id="factoriesContainer" class="row factory-row">
+      <div class="angularFactoryCard" ng-repeat="fact in factories">
+        <div ng-if="fact.amount>0">
+
+        <!-- Factory Card -->
+          <div class="col s3 factory-main">
+          <div class="card factory-central-card">
+            <div class="card-content">
+              <div class="center-card-title">
+                <h8 class="centered-text">{{factoriesName[fact.id]}}</h8>
+              </div>
+
+              <!-- Consuming Resources -->
+              <div class="factory-consuming">
+                <div ng-if="fact.recipe.cantInputs != 0">
+                  <p>{{game_consumption}}:</p>
+                  <div ng-repeat="(id, res) in factories[fact.id].recipe.input ">
+                    <div class="row no-margins">
+                      <div class="col no-padding" data-toggle="tooltip" title="{{resourcesName[res.id]}}">
+                        <img class="resource-icon tooltipped" data-position="top" data-delay="50"
+                             data-tooltip='{{res.name}}' ng-src="{{resImg[res.id]}}" />
+                      </div>
+                      <div class="col">
+                        <p>
+                          {{formatNumber(-res.production * fact.amount,2)}}/s
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Image and Amount -->
+              <div class="card-image">
+                <img class="factory-image" ng-src="{{factImg[fact.id]}}" />
+              </div>
+              <p class="centered-text">
+                {{game_amount}}: {{formatNumber(fact.amount)}}
+                <!--<script>document.write(abbreviateNumber(parseFloat(${factory.amount}), true));</script>-->
+              </p>
+
+              <!-- Producing Resources -->
+              <div class="factory-producing">
+                <p>{{game_production}}:</p>
+                <div ng-repeat="(id, res) in factories[fact.id].recipe.output">
+                  <div class="row no-margins">
+                    <div class="col no-padding" data-toggle="tooltip" title="{{resourcesName[res.id]}}">
+                      <img class="resource-icon tooltipped" data-position="top" data-delay="50"
+                           data-tooltip='{{res.name}}' ng-src="{{resImg[res.id]}}"/>
+                    </div>
+                    <div class="col">
+                      <div>
+                        {{formatNumber(res.production * fact.amount,2)}}/s
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="divider last"></div>
+    </div>
+  </div>
+  <!-- RIGHT PANEL -->
+  <div class="col no-padding s3">
+    <div class="scrollable-y card darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">{{game_factories}}</span>
+        <div class="divider"></div>
+        <div class="right-description">
+          <div>{{game_factory}}</div>
+          <div>{{game_recipe}}</div>
+          <div>{{game_upgrade}}</div>
+        </div>
+
+        <div ng-repeat="fact in factories">
+          <div class="divider"></div>
+          <!-- BEGINING OF FACTORY CARD -->
+          <div class="section">
+            <div class="factory-card-container">
+              <div class="row factory-card">
+                <!-- Factory Column -->
+                <div class="col s4 buyFactorySection">
+                  <div class="card-image factory-icon">
+                    <p class="center-align">{{factoriesName[fact.id]}}</p>
+                    <img ng-src="{{factImg[fact.id]}}" alt="factory_icon"/>
+                  </div>
+                  <p>{{game_cost}}:</p>
+                  <div>
+                    <div ng-repeat="res in fact.cost ">
+                      <div class="row no-margins">
+                        <div class="col no-padding" data-toggle="tooltip" title="{{resourcesName[res.id]}}">
+                          <img class="resource-icon tooltipped" data-position="top" data-delay="50"
+                               data-tooltip='{{res.name}}'  ng-src="{{resImg[res.id]}}" />
+                        </div>
+                        <div class="col">
+                          <p>
+                            {{formatNumber(res.storage,2)}}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Recipe Column -->
+                <div class="col s4">
+                  <div ng-repeat="(id, res) in fact.recipe.input ">
+                    <div class="row no-margins">
+                      <div class="col no-padding" data-toggle="tooltip" title="{{resourcesName[res.id]}}">
+                        <img class="resource-icon tooltipped" data-position="top" data-delay="50"
+                             data-tooltip='{{res.name}}' ng-src="{{resImg[res.id]}}" />
+                      </div>
+                      <div class="col no-padding">
+                        <p>
+                          {{formatNumber(-res.production,2)}}/s
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-image col s12">
+                    <img src="./images/arrow_ingredients.png" alt="embudo"/>
+                  </div>
+                  <div ng-repeat="(id, res) in fact.recipe.output">
+                    <div class="row no-margins">
+                      <div class="col no-padding" data-toggle="tooltip" title="{{resourcesName[res.id]}}">
+                        <img class="resource-icon tooltipped" data-position="top" data-delay="50"
+                             data-tooltip='{{res.name}}' ng-src="{{resImg[res.id]}}"/>
+                      </div>
+                      <div class="col no-padding">
+                        <p>
+                          {{formatNumber(res.production,2)}}/s
+                          <!--<fmt:formatNumber pattern="#.##/s " value="${inputMap.get(res)}"/>-->
+                          <!--<script>document.write(abbreviateNumber(${inputMap.get(res)}, true) + "/s");</script>-->
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Upgrade Column (NEED FIX) -->
+                <div class="col s4 button-container">
+                  <div ng-class="canUpgrade(fact.id) ? 'canBuy' : ''" id="upgradeDisabler${factory.getType()}" class="box black upgradeDisability"></div>
+                  <div ng-if="factories[fact.id].amount > 0">
+                    <div class="upgrade-button-container">
+                      <button type="button" id="upgrade-button-{{fact.id}}" data-factoryid="${factory.getType().getId()}"
+                              class="waves-effect waves-light upgradeButton btn ${factory.getNextUpgrade().getType()} tooltipped"
+                              data-position="down" data-delay="50"
+                              data-tooltip='OUTPUT INCREASE' ng-click="upgradeFactory(fact.id)">
+                        <div class="card-image">
+                          <img class="upgradeImage" ng-src="{{upgradeImg[fact.upgrade.type]}}" alt="0upgrade_icon"/>
+                        </div>
+                        {{game_toUpgrade}}
+                      </button>
+                      <div ng-switch="fact.upgrade.type">
+                        <div ng-switch-when="10" ng-click="upgradeFactory(fact.id)">
+                          <button type="button" id="upgrade-{{fact.id}}" data-factoryid="${factory.getType().getId()}"
+                                  class="waves-effect waves-light upgradeButton btn {{fact.upgrade.description}} tooltipped"
+                                  data-position="down" data-delay="50"
+                                  data-tooltip='OUTPUT INCREASE'>
+                            <div class="card-image">
+                              <img class="upgradeImage" src="./images/upgrade_icons/2.png" alt="0upgrade_icon"/>
+                            </div>
+                          </button>
+                        </div>
+                        <div ng-switch-when="11">
+                          <button type="button" id="upgrade-{{fact.id}}" data-factoryid="${factory.getType().getId()}"
+                                  class="waves-effect waves-light upgradeButton btn {{fact.upgrade.description}} tooltipped"
+                                  data-position="down" data-delay="50"
+                                  data-tooltip='INPUT REDUCTION'>
+                            <div class="card-image">
+                              <img class="upgradeImage" src="./images/upgrade_icons/0.png" alt="1upgrade_icon"/>
+                            </div>
+                          </button>
+                        </div>
+                        <div ng-switch-when="12">
+                          <button type="button" id="upgrade-{{fact.id}}" data-factoryid="${factory.getType().getId()}"
+                                  class="waves-effect waves-light upgradeButton btn {{fact.upgrade.description}} tooltipped"
+                                  data-position="down" data-delay="50"
+                                  data-tooltip='INPUT REDUCTION'>
+                            <div class="card-image">
+                              <img class="upgradeImage" src="./images/upgrade_icons/1.png" alt="1upgrade_icon"/>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row no-margins">
+                      <div class="col no-padding" data-toggle="tooltip" title="{{resourcesName[3]}}">
+                        <img class="resource-icon tooltipped" data-position="top" data-delay="50"
+                             data-tooltip='<spring:message code="money-type"/>'
+                             src="./images/resources_icon/3.png"/>
+                      </div>
+                      <div class="col">
+                        <p class="no-margins">
+                          {{fact.upgrade.cost}}
+                          <!--<fmt:formatNumber pattern="#" value="${factory.getNextUpgrade().cost}"/>-->
+                          <!--<script>document.write(abbreviateNumber(parseFloat(${factory.getNextUpgrade().cost}), false));</script>-->
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Buy Buttons-->
+          <div class="allBuyButtonsContainer">
+            <div class="buyButtonsContainer">
+              <div ng-click="buyFactory(fact.id,1)">
+                <div ng-class="canBuy(fact.id,1) ? 'canBuy' : ''" id="factory1Disabler{{fact.type}}" data-position="top" data-delay="50"
+                     data-tooltip="CANTBUY" class="tooltipped box black buy1Disability"></div>
+                <img id="buyOne{{fact.id}}" class="buyFactory" ng-src="{{buttonImg[buttonsFolder + '1']}}"/>
+              </div>
+              <div ng-click="buyFactory(fact.id,10)">
+                <div ng-class="canBuy(fact.id,10) ? 'canBuy' : ''" id="factory10Disabler{{fact.type}}" data-position="top" data-delay="50"
+                     data-tooltip="<spring:message code='game.cantBuy'/>" class="tooltipped box black buy10Disability "></div>
+                <img id="buyTen{{fact.id}}" class="buyFactory" ng-src="{{buttonImg[buttonsFolder + '10']}}"/>
+              </div>
+              <div ng-click="buyFactory(fact.id,100)">
+                <div ng-class="canBuy(fact.id,100) ? 'canBuy' : ''" id="factory100Disabler{{fact.type}}" data-position="top" data-delay="50"
+                     data-tooltip="<spring:message code='game.cantBuy'/>" class="tooltipped box black buy100Disability"></div>
+                <img id="buyHundred{{fact.id}}" class="buyFactory" ng-src="{{buttonImg[buttonsFolder + '100']}}"/>
+              </div>
+            </div>
+            <div id="maxButtonContainer" ng-click="buyMaxFactory(fact.id)">
+              <div ng-class="canBuy(fact.id,1) ? 'canBuy' : ''" id="factoryMaxDisabler{{fact.type}}" class="box black buyMaxDisability"></div>
+              <img id="buyMax{{fact.id}}" data-amount="max" data-factoryid="${factory.getType().getId()}" class="buyFactory" src="./images/bigButton.png"/>
+              <p id="maxBuy{{fact.id}}" class="maxText">MAX: {{formatNumber(fact.buyLimits.max,2) == 'NaN' ? "-":formatNumber(fact.buyLimits.max,2)}}</p>
+            </div>
+          </div>
+          <!-- END OF FACTORY CARD -->
+        </div>
+        <div class="divider last"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./scripts/js/game.js"></script>

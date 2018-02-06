@@ -1,0 +1,35 @@
+
+
+<link type="text/css" rel="stylesheet" href="./styles/register.css">
+<div style="visibility: hidden; position: absolute;">
+  {{
+  buttonImg["buttons_es" + "register"] = "./images/buttons_es/register.png";
+  buttonImg["buttons" + "register"] = "./images/buttons/register.png";
+  }}
+</div>
+<div>
+  <a id="backBtn" ng-href="./#!/">⬅️ {{register_back}}</a>
+  <div id="formContent">
+    <h2 class="registercss">{{register_register}}</h2>
+    <form class="registercss" modelAttribute="registerForm" action="${postPath}" method="post">
+      <div>
+        {{home_username}}:
+        <input id="username" class="registercss inputBox whiteInput" ng-model="username" type="text" path="username"/>
+        <div class="registercss inputError">{{usernameError}}</div>
+      </div>
+      <div>
+        {{home_password}}:
+        <input id="password" class="registercss registercss inputBox whiteInput" ng-model="password" type="password" path="password"/>
+        <div class="registercss inputError">{{passwordError}}</div>
+      </div>
+      <div>
+        {{register_repeatPass}}:
+        <input id ="password2" class="registercss inputBox whiteInput" ng-model="password2" type="password" path="repeatPassword"/>
+        <div class="registercss inputError">{{password2Error}}</div>
+      </div>
+      <div ng-click="register()" id="registerBtnContainer">
+        <img class="registercss" id="register" type="submit" ng-src="{{buttonImg[buttonsFolder + 'register']}}" />
+      </div>
+    </form>
+  </div>
+</div>

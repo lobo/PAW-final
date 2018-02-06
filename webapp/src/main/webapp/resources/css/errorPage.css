@@ -1,0 +1,29 @@
+
+body {
+    /*background-color: #4eace2;*/
+    padding-top: 5%;
+    background-size: 100%;
+}
+
+@font-face {
+    font-family: Fixedsys;
+    src: url('../fonts/FSEX300.ttf') format("truetype");;
+}
+
+h2 {
+    font-family: Fixedsys;
+    color: white;
+    font-size: 5rem !important;
+    text-shadow: -1px 0 black, 0 1px black, 8px 0 black, 0 -6px black;
+    text-align: center;
+    padding: 0;
+    margin: 0 !important;
+}
+
+p {
+    font-family: Fixedsys;
+    color: white;
+    font-size: 1.7em !important;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    margin-top: 1em;
+}

@@ -1,0 +1,32 @@
+
+#liamNeeson {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: auto;
+}
+
+body {
+  //overflow: hidden !important;
+}
+
+#errorTitle{
+  font-family: Fixedsys;
+  color: white;
+  font-size: 3em !important;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  text-align: center;
+  margin: 0;
+}
+
+#errorMessage {
+  font-family: Fixedsys;
+  color: white;
+  font-size: 1.7em !important;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  text-align: center;
+  margin: 0;
+  margin-top: 4rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}

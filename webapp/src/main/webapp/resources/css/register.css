@@ -1,0 +1,69 @@
+
+body {
+    background-color: #4eace2;
+    text-align: center;
+}
+
+.inputBox {
+    margin: auto;
+    width: 80%;
+    height: 2em;
+    margin: 0.2em;
+    margin-top: 1em;
+    margin-bottom:  1em;
+    font-size: 1.4em;
+    max-width: 25em;
+}
+
+@font-face {
+    font-family: Fixedsys;
+    src: url('../fonts/FSEX300.ttf') format("truetype");
+}
+
+h2 {
+    font-family: Fixedsys;
+    color: white;
+    font-size: 5em;
+    text-shadow: -1px 0 black, 0 1px black, 8px 0 black, 0 -6px black;
+    margin-top: 1em;
+}
+.formError{
+    width: 80%;
+    margin:auto;
+    font-weight: 600;
+    color: #ff2222;
+    margin-top: -1em;
+    max-width: 30em;
+
+}
+
+#backBtn {
+    font-family: Fixedsys;
+    color: white;
+    font-size: 1.5em;
+    text-shadow: -1px 0 black, 0 1px black, 4px 0 black, 0 -3px black;
+    margin-top: 1em;
+    width: 8rem;
+}
+
+#backBtn:hover {
+    color: black;
+    text-shadow: -1px 0 white, 0 1px white, 4px 0 white, 0 -3px white;
+    cursor: pointer;
+}
+
+#registerForm{
+    /*background-color: darkblue;*/
+    margin: auto;
+    width: 70%;
+    padding-bottom:  1em;
+    max-width: 50em;
+}
+
+#register {
+    width: 9rem;
+}
+
+#register:hover {
+    cursor: pointer;
+}

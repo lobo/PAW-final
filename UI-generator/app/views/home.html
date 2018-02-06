@@ -1,0 +1,38 @@
+<title>clickerQuest</title>
+<div style="visibility: hidden; position: absolute;">
+  {{
+buttonImg["buttons_es" + "play"] = "./images/buttons_es/play.png";
+buttonImg["buttons" + "play"] = "./images/buttons/play.png";
+}}
+</div>
+<div id="homePage">
+  <div>{{headline}}</div>
+  <img id="logo" class="homecss profile" src="./images/clickerQuest_logo.png" alt="logo"/>
+  <form class="homecss formu">
+    <div class="homecss container" id="inputContainer">
+      <div>
+        <label class="homecss" for="usernameInput">{{home_username}} :</label>
+        <input class="homecss whiteInput" id = "usernameInput" ng-model="username" type ="text"/>
+        <div class="homecss inputError">{{usernameError}}</div>
+      </div>
+      <div>
+        <label class="homecss" for ="passwordInput">{{home_password}} :</label>
+        <input class="homecss whiteInput" id = "passwordInput" ng-model="password"  type = "password"/>
+        <div class="homecss inputError">{{passwordError}}</div>
+      </div>
+      <p id="loginFailLabel" for="inputContainer" class="homecss homecss formError invisible">LOGIN FAIL</p>
+    </div>
+    <div>
+      <input class="homecss whiteInput" id="rememberMe" ng-model="rememberMe" type = "checkbox"/>
+      <label class="homecss" id="rememberMeLabel" for ="rememberMe">{{home_remember}}</label>
+    </div>
+    <div>
+      <img ng-click="login()" id="playImg" type= "submit" class="homecss profile" ng-src="{{buttonImg[buttonsFolder + 'play']}}" alt="factory_img" />
+    </div>
+    <div class="homecss invisible">
+      <input class="homecss whiteInput" id="play" type= "submit" />
+    </div>
+  </form>
+  <a class="homecss" id="register" ng-href="./#!/register">{{home_register}}</a>
+
+</div>
